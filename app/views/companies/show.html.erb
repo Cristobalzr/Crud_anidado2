@@ -13,14 +13,15 @@
   <p><%= form.label :email, 'Email' %>
   <%= form.text_field :email %></p>
   <p><%= form.label :area_id, 'Area' %>
-  <%= form.select :area_id, Area.pluck(:name) %></p>
+  <%= form.select :area_id, Area.pluck(:name, :id) %></p>
   <%= form.hidden_field :company_id, value: @company.id %>
   <p><%= form.submit %></p>
 <% end %>
 
 <p><% @company.employees.each do |e| %>
-  <%= e.first_name %>
+  <p><%= e.first_name %>
   <%= e.last_name %>
   <%= e.email %>
-  <%= e.area %>
+  <%= e.area.try(:name) %>
+  <%= link_to "Borrar", company_employee_path(company_id: @company.id, id: e.id), method: :delete %></p>
 <% end %></p>
