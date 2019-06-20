@@ -18,8 +18,8 @@
     <% @companies.each do |company| %>
       <tr>
 
-        <td><%= link_to company.name, company %></td>
-        <td><%= company.employees.count %></td>
+        <td><%= link_to company.name, company, class: 'display-4' %></td>
+        <td class="display-4"><%= company.employees.count %></td>
         <td><%= link_to 'Show', company, class: "btn btn-primary"%></td>
         <td><%= link_to 'Edit', edit_company_path(company), class: "btn btn-warning" %></td>
         <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
@@ -29,5 +29,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Company', new_company_path %>
