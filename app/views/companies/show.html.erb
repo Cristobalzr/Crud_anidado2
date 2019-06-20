@@ -5,11 +5,22 @@
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>
 
-<%= form_with(model: [ @company, @employee ]) do |form| %>
-  <%= form.label :first_name, 'Nombre' %>
-  <%= form.text_field :first_name %>
-  <%= form.label :last_name, 'Apellido' %>
-  <%= form.text_field :last_name %>
-  <%= form.label :email, 'Email' %>
-  <%= form.text_field :email %>
+<%= form_with(model: [ @company, @employee ], local: true) do |form| %>
+  <p><%= form.label :first_name, 'Nombre' %>
+  <%= form.text_field :first_name %></p>
+  <p><%= form.label :last_name, 'Apellido' %>
+  <%= form.text_field :last_name %></p>
+  <p><%= form.label :email, 'Email' %>
+  <%= form.text_field :email %></p>
+  <p><%= form.label :area_id, 'Area' %>
+  <%= form.select :area_id, Area.pluck(:name) %></p>
+  <%= form.hidden_field :company_id, value: @company.id %>
+  <p><%= form.submit %></p>
 <% end %>
+
+<p><% @company.employees.each do |e| %>
+  <%= e.first_name %>
+  <%= e.last_name %>
+  <%= e.email %>
+  <%= e.area %>
+<% end %></p>

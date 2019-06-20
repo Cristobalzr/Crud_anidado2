@@ -5,6 +5,6 @@ class EmployeesController < ApplicationController
     redirect_to company_path(params[:company_id])
   end
   def employee_params
-    params.require(:employee).permit(:first_name, :last_name, :email)
+    params.require(:employee).permit(:first_name, :last_name, :email, :company_id)
   end
 end
